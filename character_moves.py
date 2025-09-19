@@ -92,4 +92,7 @@ while(True):
             moveup = False
             movedown = False
     if movecircle:
+        x=int(400+250*math.cos(angle))
+        y=int(340+250*math.sin(angle))
+        angle+=0.05
         
