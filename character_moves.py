@@ -47,3 +47,14 @@ while(True):
                 movebackward=False
                 moveup=False
                 movedown=True
+        if movedown:
+            y-=10
+            if y<90:
+                moveforward=True
+                movebackward=False
+                moveup=False
+                movedown=False
+    if startx==x and starty==y:
+        moverct=False
+        movetrg=True
+    delay(0.01)
