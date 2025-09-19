@@ -15,9 +15,18 @@ movetrg=False
 moveup=False
 movedown=False
 moveforward=False
-moverbackward=False
+movebackward=False
 angle=4.75
 
-grass.draw_now(400,30)
-cha.draw_now(x,y)
 while(True):
+    clear_canvas()
+    grass.draw_now(400, 30)
+    cha.draw_now(x, y)
+    if moverct:
+        if moveforward:
+            x+=10
+            if x>770:
+                moveforward=False
+                movebackward=False
+                moveup=True
+                movedown=False
