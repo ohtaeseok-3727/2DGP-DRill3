@@ -1,5 +1,8 @@
 from pico2d import *
 import math
+
+from pico2d import close_canvas
+
 open_canvas(800, 600)
 
 grass = load_image('grass.png')
@@ -56,7 +59,7 @@ while(True):
                 movebackward=False
                 moveup=False
                 movedown=False
-        if startx==x and starty==y:
+        if abs(startx - x) < 10 and abs(starty - y) < 10:
             x, y = startx, starty
             moverct = False
             movetrg = True
@@ -68,23 +71,24 @@ while(True):
     if movetrg:
         if moveforward:
             x+=10
-            if x>770:
+            if x>=770:
                 moveforward=False
                 movesideup=True
                 movesidedown=False
         if movesideup:
             x-=8
             y+=10
-            if y>550:
+            if y>=550:
                 movesideup=False
                 movesidedown=True
         if movesidedown:
             x-=8
             y-=10
-            if y<90:
+            if y<=90:
                 movesidedown=False
                 moveforward=True
-        if startx == x and starty == y:
+        if abs(startx - x) < 10 and abs(starty - y) < 10:
+            x, y= startx, starty
             movetrg = False
             movecircle = True
             moveforward = False
@@ -95,4 +99,14 @@ while(True):
         x=int(400+250*math.cos(angle))
         y=int(340+250*math.sin(angle))
         angle+=0.05
-        
+        if angle>=4.75+2*math.pi:
+            movecircle=False
+            moverct=True
+            x=startx
+            y=starty
+            moveforward=True
+            movebackward=False
+            moveup=False
+            movedown=False
+            angle=4.75
+close_canvas()
