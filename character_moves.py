@@ -1,5 +1,5 @@
 from pico2d import *
-
+import math
 open_canvas(800, 600)
 
 grass = load_image('grass.png')
@@ -16,6 +16,8 @@ moveup=False
 movedown=False
 moveforward=True
 movebackward=False
+movesideup=False
+movesidedown=False
 angle=4.75
 
 grass.draw_now(400, 30)
@@ -28,33 +30,66 @@ while(True):
     if moverct:
         if moveforward:
             x+=10
-            if x>770:
+            if x>=770:
                 moveforward=False
                 movebackward=False
                 moveup=True
                 movedown=False
         if moveup:
                 y+=10
-                if y>550:
+                if y>=550:
                     moveup=False
                     movedown=False
                     moveforward=False
                     movebackward=True
         if movebackward:
             x-=10
-            if x<30:
+            if x<=30:
                 moveforward=False
                 movebackward=False
                 moveup=False
                 movedown=True
         if movedown:
             y-=10
-            if y<90:
+            if y<=90:
                 moveforward=True
                 movebackward=False
                 moveup=False
                 movedown=False
-    if startx==x and starty==y:
-        moverct=False
-        movetrg=True
+        if startx==x and starty==y:
+            x, y = startx, starty
+            moverct = False
+            movetrg = True
+            moveforward = True
+            movebackward = False
+            moveup = False
+            movedown = False
     delay(0.01)
+    if movetrg:
+        if moveforward:
+            x+=10
+            if x>770:
+                moveforward=False
+                movesideup=True
+                movesidedown=False
+        if movesideup:
+            x-=8
+            y+=10
+            if y>550:
+                movesideup=False
+                movesidedown=True
+        if movesidedown:
+            x-=8
+            y-=10
+            if y<90:
+                movesidedown=False
+                moveforward=True
+        if startx == x and starty == y:
+            movetrg = False
+            movecircle = True
+            moveforward = False
+            movebackward = False
+            moveup = False
+            movedown = False
+    if movecircle:
+        
