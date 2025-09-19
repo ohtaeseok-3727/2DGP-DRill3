@@ -67,7 +67,6 @@ while(True):
             movebackward = False
             moveup = False
             movedown = False
-    delay(0.01)
     if movetrg:
         if moveforward:
             x+=10
@@ -109,4 +108,5 @@ while(True):
             moveup=False
             movedown=False
             angle=4.75
+    delay(0.01)
 close_canvas()
