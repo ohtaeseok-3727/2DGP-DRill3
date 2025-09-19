@@ -14,9 +14,12 @@ movecircle=False
 movetrg=False
 moveup=False
 movedown=False
-moveforward=False
+moveforward=True
 movebackward=False
 angle=4.75
+
+grass.draw_now(400, 30)
+cha.draw_now(x, 90)
 
 while(True):
     clear_canvas()
@@ -30,3 +33,10 @@ while(True):
                 movebackward=False
                 moveup=True
                 movedown=False
+        if moveup:
+                y+=10
+                if y>550:
+                    moveup=False
+                    movedown=False
+                    moveforward=False
+                    movebackward=True
