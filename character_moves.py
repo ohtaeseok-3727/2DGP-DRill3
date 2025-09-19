@@ -40,3 +40,10 @@ while(True):
                     movedown=False
                     moveforward=False
                     movebackward=True
+        if movebackward:
+            x-=10
+            if x<30:
+                moveforward=False
+                movebackward=False
+                moveup=False
+                movedown=True
